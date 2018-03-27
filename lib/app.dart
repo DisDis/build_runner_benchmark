@@ -83,9 +83,10 @@ class App{
   static const String _uniqueToken = '/*%UNIQUE_ID%*/';
   static const String _lastCallToken = '/*%LAST_CALL%*/';
   static const String _callToken = '/*%CALL%*/';
-  Future _createFakeStruct() async{
-
-    var sc = new StructureConfig(new StructureNode()..populate(100, 100));
+  Future _createFakeStruct([StructureConfig sc]) async{
+    if (sc == null){
+      sc = new StructureConfig(new StructureNode()..populate(100, 100));
+    }
     _createFakeFile(sc.root);
   }
   String _genFileName(int id)=>"part_${id}.dart";
@@ -95,7 +96,7 @@ class App{
     var fList = <Future>[];
     sn.imports.forEach((subNode){
       fList.add(_createFakeFile(subNode));
-      importStr.writeln("import '${_genFileName(subNode.id)}' as ${_genImportNM(subNode.id)};");
+      importStr.writeln("import 'package:build_runner_benchmark_test/${_genFileName(subNode.id)}' as ${_genImportNM(subNode.id)};");
     });
     StringBuffer callStr = new StringBuffer();
     sn.calls.forEach((subNode){

@@ -1,3 +1,5 @@
+import 'package:path/path.dart';
+
 class Config{
   final String template_project_directory = "template_project";
 
@@ -8,5 +10,5 @@ class Config{
     return _instance;
   }
 
-  final String template_file_path  = 'lib/src/dart_file_template.dart';
+  final String template_file_path  = join('lib','src','dart_file_template.dart');
 }
