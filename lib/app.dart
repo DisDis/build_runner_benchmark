@@ -15,7 +15,7 @@ class App{
     _log.info("RUN");
     _output = new Directory(_config.outputFolder);
   }
-  Future run() async{
+  Future run([StructureConfig sc]) async{
     try {
 
       if (await _output.exists()) {
@@ -26,7 +26,7 @@ class App{
       await _populateTemplateContent();
       await _output.create(recursive: true);
       await _copyTemplateProject();
-      await _createFakeStruct();
+      await _createFakeStruct(sc);
     }catch(e, st){
       _log.severe("Error", e, st);
     }

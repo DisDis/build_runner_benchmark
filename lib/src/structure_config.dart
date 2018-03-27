@@ -1,7 +1,19 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:logging/logging.dart';
+
 class StructureConfig{
+  static final Logger _log = new Logger('StructureConfig');
   final StructureNode root;
 
   StructureConfig(this.root);
+  factory StructureConfig.fromAssetGraph(String path){
+    _log.info("Parsing '${path}'");
+    var assetGraphPath = new File(path);
+    var assetGraph = json.decode(assetGraphPath.readAsStringSync()) as Map<String, dynamic>;
+    return null;
+  }
 }
 
 class StructureNode{
