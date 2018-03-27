@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
-
+import 'package:build/build.dart';
+import 'package:build_runner/src/asset_graph/graph.dart';
+import 'package:build_runner/src/asset_graph/node.dart';
 import 'package:logging/logging.dart';
 
 class StructureConfig{
@@ -8,20 +10,15 @@ class StructureConfig{
   final StructureNode root;
 
   StructureConfig(this.root);
-  factory StructureConfig.fromAssetGraph(String path){
-    _log.info("Parsing '${path}'");
-    var assetGraphPath = new File(path);
-    var assetGraph = json.decode(assetGraphPath.readAsStringSync()) as Map<String, dynamic>;
-    return null;
-  }
 }
 
 class StructureNode{
   final int id;
+  final String name;
   final List<StructureNode> imports = <StructureNode>[];
   final List<StructureNode> calls = <StructureNode>[];
 
-  StructureNode([int id]): this.id = id??_idCount++;
+  StructureNode({int id, this.name}): this.id = id??_idCount++;
 
   static int _idCount = 0;
   void populate(int countImport, int countCall){

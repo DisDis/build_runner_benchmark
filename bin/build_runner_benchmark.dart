@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:build_runner_benchmark/app.dart';
+import 'package:build_runner_benchmark/src/project_cloner.dart';
 import 'package:build_runner_benchmark/src/structure_config.dart';
 import 'package:logging/logging.dart';
 import 'package:logging/logging.dart' show Logger, Level, LogRecord;
@@ -26,14 +27,14 @@ void initLog([String isolateMarker]) {
 Future main(List<String> params) async {
   initLog();
   var parser = new ArgParser();
-  parser.addOption('graph', abbr:'g', help:'Asset graph file', valueHelp: 'path');
+  parser.addOption('project', abbr:'p', help:'Project root', valueHelp: 'path');
   print("Options");
   print(parser.usage);
   var args = parser.parse(params);
 //  var graph = args['graph'];
   StructureConfig sc = null;
-  if (args.wasParsed('graph')){
-    sc = new StructureConfig.fromAssetGraph(args['graph'] as String);
+  if (args.wasParsed('project')){
+    sc = new ProjectCloner(args['project'] as String).execute();
   }
   await new App().run(sc);
 }

@@ -83,6 +83,7 @@ class App{
   static const String _uniqueToken = '/*%UNIQUE_ID%*/';
   static const String _lastCallToken = '/*%LAST_CALL%*/';
   static const String _callToken = '/*%CALL%*/';
+  static const String _nameToken = '/*%NAME%*/';
   Future _createFakeStruct([StructureConfig sc]) async{
     if (sc == null){
       sc = new StructureConfig(new StructureNode()..populate(100, 100));

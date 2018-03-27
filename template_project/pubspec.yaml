@@ -1,6 +1,7 @@
 name: build_runner_benchmark_test
 version: 0.0.1
 description: A sample command-line application
+homepage: https://github.com/DisDis/build_runner_benchmark
 dependencies:
 
 dev_dependencies:

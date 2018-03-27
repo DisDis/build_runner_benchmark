@@ -1,5 +1,7 @@
 library sample_pi_/*%UNIQUE_ID%*/;
 
+// File name: '/*%NAME%*/'
+
 import 'dart:math';
 
 /*%IMPORT%*/
